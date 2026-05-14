@@ -1,15 +1,25 @@
-#include <iostream>
 #pragma once
+#include <iostream>
 
 class Bureaucrat
 {
 public:
 	Bureaucrat();
-	Bureaucrat(arguments);
+	Bureaucrat(const std::string &name);
 	~Bureaucrat();
 	Bureaucrat(const Bureaucrat& other);
 	Bureaucrat& operator=(const Bureaucrat& other);
 
+	// Member function
+	void			incrementGrade(void);
+	void			decrementGrade(void);
+
+	// Getters & Setters
+	std::string		getName(void) const;
+	unsigned int	getGrade(void) const;
+	void			setGrade(unsigned int value);
+
+	// Exception
 	class GradeTooHighException : public std::exception
 	{
 		public:
@@ -27,12 +37,6 @@ public:
 				return ("The grade is too low");
 			}
 	};
-
-	//Implement increase and decrease grade
-
-	// Getters & Setters
-	int		getGrade(void) const;
-	void	setGrade(int value);
 
 private:
 	const std::string	_name;

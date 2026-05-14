@@ -3,7 +3,7 @@
 Bureaucrat::Bureaucrat() : _name("Unknown Bureaucrat")
 {}
 
-Bureaucrat::Bureaucrat(std::string &name) : _name(name)
+Bureaucrat::Bureaucrat(const std::string &name) : _name(name)
 {}
 
 Bureaucrat::~Bureaucrat()
@@ -18,33 +18,47 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other)
 {
 	if (this != &other)
 	{
-		_value = other._value;
+		_grade = other._grade;
 	}
-	return *this;
+	return (*this);
 }
 
-const std::string	Bureaucrat::getName(void) const
+std::string	Bureaucrat::getName(void) const
 {
-	return _name;
+	return (_name);
 }
 
-int		Bureaucrat::getGrade(void) const
+unsigned int	Bureaucrat::getGrade(void) const
 {
-	return _grade;
+	return (_grade);
 }
 
-void	Bureaucrat::setGrade(unsigned int &grade)
+void	Bureaucrat::setGrade(unsigned int grade)
 {
-	if (grade < 1 || grade > 150)
-	{
-		throw Exception("Grade should be between 1 and 150.");
-	}
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
 	_grade = grade;
+}
+
+void	Bureaucrat::incrementGrade(void)
+{
+	if (_grade == 1)
+		throw Bureaucrat::GradeTooHighException();
+	_grade--;
+}
+
+void	Bureaucrat::decrementGrade(void)
+{
+	if (_grade == 150)
+		throw Bureaucrat::GradeTooLowException();
+	_grade++;
 }
 
 std::ostream&	operator<<(std::ostream& out, const Bureaucrat& src)
 {
 	out << src.getName() << ", bureaucrat grade " <<
-		src.getGrade() << "." << std::endl;
+		src.getGrade() << ".";
 	return (out);
 }

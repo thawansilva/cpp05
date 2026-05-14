@@ -1,67 +1,36 @@
-#include <iostream>
 #include "Bureaucrat.hpp"
 
-class Exception: public std::exception
+int main()
 {
-	private: 
-		std::string	message;
+	Bureaucrat	a("a");
+	Bureaucrat	b("b");
+	Bureaucrat	c("c");
+	a.setGrade(1);
+	b.setGrade(150);
+	c.setGrade(10);
 
-	public:
-		Exception(): message("Exception Error")
-		{}
-		Exception(const std::string &description): message(description)
-		{}
-		~Exception() throw() {}
-		virtual const char *what() const throw()
-		{
-			return (message.c_str());
-		}
-};
-
-void	test(bool value)
-{
-	if (value == true)
-	{
-		throw std::exception();
-	}
-}
-
-void	test2(bool value)
-{
-	try
-	{
-		if (value == true)
-		{
-			throw std::exception();
-		}
-	}
-	catch(std::exception e)
-	{
-		std::cout << "catch test2" << std::endl;
-		std::cout << e.what() << std::endl;
-	}
-}
-
-void	test3(bool value)
-{
-	if (value == true)
-	{
-		throw Exception("Error A");
-	}
-}
-
-int main(int argc, char *argv[])
-{
-	Bureaucrat	bureaucrat("Thawan");
+	std::cout << "BEFORE:" << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << c << std::endl;
 
 	try
 	{
-		test3(true);
+		a.incrementGrade();
+		b.decrementGrade();
+		c.incrementGrade();
+		c.decrementGrade();
+		Bureaucrat d("d");
+		d.setGrade(151);
 	}
-	catch(Exception e)
+	catch(std::exception &e)
 	{
-		std::cout << "catch main" << std::endl;
 		std::cout << e.what() << std::endl;
 	}
-	return 0;
+
+	std::cout << "AFTER:" << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << c << std::endl;
+	return (0);
 }
