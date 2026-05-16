@@ -31,7 +31,7 @@ public:
 		public:
 			virtual const char	*what() const throw()
 			{
-				return ("The grade for the form is too high");
+				return ("grade is too high for the form");
 			}
 	};
 
@@ -40,7 +40,7 @@ public:
 		public:
 			virtual const char	*what() const throw()
 			{
-				return ("The grade for the form is too low");
+				return ("grade is too low for the form");
 			}
 	};
 };

@@ -1,8 +1,8 @@
 #include "Form.hpp"
 
-Form::Form() : _value(0)
-{
-}
+Form::Form() : _name("Unknown Form"), _isSigned(false), _signGrade(150),
+	_executeGrade(150)
+{}
 
 Form::Form(const std::string &name, unsigned int signGrade, unsigned int executeGrade) : _name(name), _isSigned(false), _signGrade(signGrade), _executeGrade(executeGrade)
 {}
@@ -27,23 +27,18 @@ bool			Form::isSigned(void) const
 	return (_isSigned)
 }
 
-void			Form::beSigned(const Bureaucrat &b)
+void			Form::beSigned(const Bureaucrat &signer)
 {
-	if (b.getGrade() < getSignGrade())
+	if (signer.getGrade() > getSignGrade())
+		throw Form::GradeTooLowException();
+	else if (!isSigned())
+	{
 		_isSigned = true;
-}
-
-void			Form::signForm(const Bureaucrat &b)
-{
-	try
-	{
-		beSigned(b)
+		std::cout << getName() << " Form was signed by ";
+		std::cout << signer.getName() << std::endl;
 	}
-	catch (std::exception &e)
-	{
-
-	}
-	beSigned(b);
+	else
+		std::cout << getName() << "Form is already signed" << std::endl;
 }
 
 std::string		Form::getName(void) const
@@ -81,6 +76,9 @@ void			Form::setExecuteGrade(unsigned int grade)
 
 std::ostream&	operator<<(std::ostream& out, const Form& src)
 {
-	out << getName()
+	out << getName() << " is ";
+	out << _isSigned ? " signed\n" : " not signed\n";
+	out << "Sign grade: " << _signGrade;
+	out << "Execute grade: " << _executeGrade << std::endl;
 	return (out);
 }

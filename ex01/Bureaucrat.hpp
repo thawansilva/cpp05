@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 
+class Form;
+
 class Bureaucrat
 {
 public:
@@ -13,6 +15,7 @@ public:
 	// Member function
 	void			incrementGrade(void);
 	void			decrementGrade(void);
+	void			signForm(Form &form);
 
 	// Getters & Setters
 	std::string		getName(void) const;

@@ -33,6 +33,20 @@ unsigned int	Bureaucrat::getGrade(void) const
 	return (_grade);
 }
 
+void			Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << b.getName() << " signed " << getName();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << b.getName() << " couldn't sign " << getName();
+		std::cout << " because " <<  e.what() << std::endl;
+	}
+}
+
 void	Bureaucrat::setGrade(unsigned int grade)
 {
 	if (grade < 1)
