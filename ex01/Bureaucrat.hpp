@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/17 15:58:09 by thaperei          #+#    #+#             */
+/*   Updated: 2026/05/17 15:59:10 by thaperei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 #include <iostream>
+#include "Form.hpp"
 
 class Form;
 
@@ -8,6 +21,7 @@ class Bureaucrat
 public:
 	Bureaucrat();
 	Bureaucrat(const std::string &name);
+	Bureaucrat(const std::string &name, unsigned int grade);
 	~Bureaucrat();
 	Bureaucrat(const Bureaucrat& other);
 	Bureaucrat& operator=(const Bureaucrat& other);

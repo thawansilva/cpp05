@@ -1,4 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thaperei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/17 15:58:16 by thaperei          #+#    #+#             */
+/*   Updated: 2026/05/17 17:40:10 by thaperei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -31,7 +46,7 @@ public:
 		public:
 			virtual const char	*what() const throw()
 			{
-				return ("grade is too high for the form");
+				return ("Grade is too high for the form");
 			}
 	};
 
@@ -40,7 +55,7 @@ public:
 		public:
 			virtual const char	*what() const throw()
 			{
-				return ("grade is too low for the form");
+				return ("Grade is too low for the form");
 			}
 	};
 };

@@ -1,7 +1,7 @@
 NAME = bureaucrat_with_forms
 
 CC := c++
-CPPFLAGS := -Wall -Werror -Wextra -std=c++98
+CPPFLAGS := -Wall -Werror -Wextra -std=c++98 -g2
 SRC := main.cpp Bureaucrat.cpp Form.cpp
 OBJS := $(SRC:%.cpp=%.o)
 
